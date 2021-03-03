@@ -1,26 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './Body.css';
+import Boxlist from './Boxlist';
 
-const Body = () => {
-    function getData () {
-        fetch("https://community-open-weather-map.p.rapidapi.com/weather?q=Seattle", {
-            "method": "GET",
-            "headers": {
-            "x-rapidapi-key": "9661106f08mshb33efb64511b9fbp12c5eejsn9982663db56f",
-            "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
-            }
-        })
-        .then(response => {
-	    console.log(response);
-        })
-        .catch(err => {
-	    console.error(err);
-        });
+const Body = ({onInputChange, onSubmit, weatherData}) => {
+        return (
+            <div className='body'>
+                <h1>Weather app</h1>
+                <input className="inp i" type="text" placeholder=" Search for cities" onChange={onInputChange}/>
+                <button className="but grow i" onClick={onSubmit}>Search</button>
+                <Boxlist onChange={weatherData}/>
+            </div>
+        )
     }
-    return (
-        <div>
-            <h1>weather app</h1>
-        </div>
-    )
-}
+
 
 export default Body;
